@@ -10,6 +10,8 @@ import agh.wggios.analizadanych.transformations.Transformations
 object Main extends SparkSessionProvider {
 
   def main(args: Array[String]): Unit = {
+    logger.info("START OF MY APP")
+
     import spark.implicits._
 
     val flightsDf =new DataReader("flight-data.csv").read().as[FlightCaseClass]

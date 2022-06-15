@@ -10,6 +10,7 @@
 //}
 package agh.wggios.analizadanych.sparksessionprovider
 
+import org.apache.log4j.Logger
 import org.apache.spark.sql.SparkSession
 
 trait SparkSessionProvider {
@@ -20,4 +21,7 @@ trait SparkSessionProvider {
     .appName("spark-cruncher")
     .getOrCreate()
   def getSparkSession():SparkSession = {return spark}
+
+  @transient lazy val logger: Logger = Logger.getLogger(getClass.getName)
+
 }

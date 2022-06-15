@@ -19,12 +19,15 @@ class DataReader(path:String) extends SparkSessionProvider {
   }
 
   def read(): DataFrame ={
+    logger.info("reading file")
+
     if (ifExists()){
       spark.read.format(getExtension).
         option("inferSchema",true).
         option("header",true).
         load(this.path)
     } else {
+      logger.warn("File not found: " + this.path)
       System.exit(0)
       spark.emptyDataFrame
     }
